@@ -14,7 +14,7 @@ FONT_PATH = "fonts/arial.ttf"
 
 # Step 1: Convert Text to Speech (TTS)
 def generate_audio(text, output_file):
-    tts = gTTS(text, lang='en')
+    tts = gTTS(text, lang='en', tld="co.in")
     tts.save(output_file)
     print("✔ Audio file generated!")
 
@@ -51,13 +51,14 @@ def generate_video():
     # Load assets
     image_clip = ImageClip(IMAGE_FILE).with_duration(10)  # ✅ FIXED
     audio_clip = AudioFileClip(AUDIO_FILE)
-    print(TextClip.list('font'))
+    # TODO:: add text clip to this
+    # print(TextClip.list('font'))
     # Add subtitles
-    text_clip = TextClip(TEXT_CONTENT, color='white', font="Arial", method='label')
-    text_clip = text_clip.with_position(('center', 'bottom')).with_duration(10)  # ✅ FIXED
+    # text_clip = TextClip(TEXT_CONTENT, color='white', font="Arial", method='label')
+    # text_clip = text_clip.with_position(('center', 'bottom')).with_duration(10)  # ✅ FIXED
     
     # Merge everything
-    video = CompositeVideoClip([image_clip, text_clip])
+    video = CompositeVideoClip([image_clip])
     video = video.with_audio(audio_clip)
     
     # Save video
